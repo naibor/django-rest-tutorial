@@ -15,4 +15,8 @@
 - Create an app that we'll use for the simple web api
 `python manage.py startapp snippets`
 - Add the new app snippets and rest_framework to INSTALLED_APPS in settings.py
+- Create models for your app
+- Create an initial migration for your model and sync with the database
+`python manage.py makemigrations snippets`
+`python manage.py migrate snippets`
 
