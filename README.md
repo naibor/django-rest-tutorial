@@ -19,4 +19,11 @@
 - Create an initial migration for your model and sync with the database
 `python manage.py makemigrations snippets`
 `python manage.py migrate snippets`
+- Remember to make migrations before running server
+`python manage.py migrate`
+- To run server do,
+`python manage.py runserver`
+- To test the server, we will use httpie
+- To install
+`pip install httpie`
 
