@@ -26,4 +26,20 @@
 - To test the server, we will use httpie
 - To install
 `pip install httpie`
-
+- How to test: use the terminal with env active
+eg:`http http://127.0.0.1:8000/snippets/`
+- by using the Accept header
+- Request JSON
+`http http://127.0.0.1:8000/snippets/ Accept:application/json`
+- Request HTML
+`http http://127.0.0.1:8000/snippets/ Accept:text/html`
+- Or by appending a format suffix:
+- JSON suffix
+`http http://127.0.0.1:8000/snippets.json`
+- Browsable API suffix
+`http http://127.0.0.1:8000/snippets.api`
+- using the Content-Type header.
+- POST using form data
+`http --form POST http://127.0.0.1:8000/snippets/ code="print(123)"`
+- POST using JSON
+`http --json POST http://127.0.0.1:8000/snippets/ code="print(456)"`
