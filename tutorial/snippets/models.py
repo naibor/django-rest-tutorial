@@ -21,13 +21,13 @@ class Snippet(models.Model):
     language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
     style = models.CharField(choices=STYLE_CHOICES, default='friendly', max_length=100)
     # field owner to help with authentication
-    owner = models.ForeignKey('auth.USer', related_name='snippets', on_delete=models.CASCADE)
+    owner = models.ForeignKey('auth.User',related_name='snippets', on_delete = models.CASCADE)
     # To make sure that when the model is saved we populate the highlighted field
     highlighted = models.TextField()
     class Meta:
         ordering = ['created']
-
-        def save(self, *args, **kwargs):
+    
+    def save(self, *args, **kwargs):
         """
         Use the `pygments` library to create a highlighted HTML
         representation of the code snippet.
@@ -36,7 +36,7 @@ class Snippet(models.Model):
         linenos = 'table' if self.linenos else False
         options = {'title': self.title} if self.title else {}
         formatter = HtmlFormatter(style=self.style, linenos=linenos,
-                              full=True, **options)
+                             full=True, **options)
         self.highlighted = highlight(self.code, lexer, formatter)
         super().save(*args, **kwargs)
 
