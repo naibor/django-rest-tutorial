@@ -6,9 +6,11 @@ class SnippetSerializer(serializers.ModelSerializer):
     """
     fields to get serialized/deserialized
     """
+    owner = serializers.ReadOnlyField(source='owner.username')
+
     class Meta:
         model = Snippet
-        fields = ['id', 'title', 'code', 'linenos', 'language', 'style']
+        fields = ['id', 'title', 'code', 'owner', 'linenos', 'language', 'style']
 
 class UserSerializer(serializers.ModelSerializer):
     snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.object.all())
