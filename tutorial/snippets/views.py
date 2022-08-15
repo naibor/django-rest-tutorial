@@ -1,4 +1,5 @@
 from snippets.models import Snippet
+from django.contrib.auth.models import User
 from snippets.serializers import SnippetSerializer, UserSerializer
 from rest_framework import generics, permissions
 
@@ -15,7 +16,7 @@ class SnippetList(generics.ListCreateAPIView):
         override the method and modify 
         how an instance is save is managed ie; handle ownership details
         """
-        serializer.save(owner=self, request.user)
+        serializer.save(owner=self.request.user)
 
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -24,7 +25,7 @@ class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
-class UserList(generics.ListAPIViews):
+class UserList(generics.ListAPIView):
     """
     List all users
     """
